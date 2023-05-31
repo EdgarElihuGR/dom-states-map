@@ -1,5 +1,5 @@
-const states = ['Jalisco', 'Morelia', 'Colima', 'Monterrey', 'Sinaloa'];
-let map;
+const states = ['Jalisco', 'Michoacan', 'Colima', 'Nuevo Leon', 'Sinaloa'];
+var map;
 
 const createMap = () => {
     // Creating map options
@@ -19,10 +19,14 @@ const createMap = () => {
 
 const drawStatesOnMap = (states, country) => {
     for(let state of states){
-        let api = `https://nominatim.openstreetmap.org/search/?state=${state}&country=${country}&polygon_svg=1&format=json`;
+        let api = `https://nominatim.openstreetmap.org/search/?state=${state}&country=${country}&format=json`;
         fetch(api)
             .then((response) => response.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+                console.log(state + ": ");
+                console.log(data)
+                // L.polygon(data[0].).addTo(map);
+            });
     }
  }
 
